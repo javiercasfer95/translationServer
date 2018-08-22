@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 var gestorDB = require("./modules/gestorDB.js");
 var googleTranslate = require('google-translate')(apiKey); //Conseguir la apiKey
 var gestorServer = require("./modules/gestorServer.js");
-app.set('port', 8081);
+app.set('port', (process.env.PORT || 8081));
 app.set('db', 'mongodb://admin:tfgjavier123@ds125372.mlab.com:25372/tfgjavier');
 app.set('appLang', 'es');
 var traductor = require("./modules/traductor.js");
