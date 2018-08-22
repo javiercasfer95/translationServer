@@ -26,7 +26,9 @@ require("./routes/rtexts.js")(app, gestorDB); // app para que la utilice el rout
 require("./routes/rtest.js")(app, gestorDB, traductor, gestorServer);
 require("./routes/rusuarios.js")(app, gestorDB);
 require("./routes/rapiservertraductions.js")(app, gestorDB, gestorServer, traductor);
-
+app.get("/", function (req, res) {
+    res.send("Servidor en funcionamiento.");
+});
 // lanzar el servidor
 app.listen(app.get('port'), function() {
     console.log("Servidor activo");
