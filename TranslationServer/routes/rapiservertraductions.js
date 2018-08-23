@@ -1,5 +1,12 @@
 module.exports = function (app, gestorBD, gestorServer, traductor) {
 
+
+    app.get("/", function (req, res) {
+        res.status(200);
+        res.json({
+            msj : "Servidor de idiomas fncionando...\nAutor: Javier Castro\nProyecto: Trabajo de fin de carrera"
+        });
+    });
     app.get("/texto", function (req, res){
       var lv = parseInt(req.query.lv);
       var lang = req.query.lang;
