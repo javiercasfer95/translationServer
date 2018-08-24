@@ -30,7 +30,10 @@ module.exports = function (app, gestorBD, gestorServer, traductor) {
                 console.log("No ha habido error en los textos:");
                 console.log(textos);
                 res.status(200);
-                res.send(JSON.stringify(textos));
+                //res.send(JSON.stringify(textos));
+                res.json({
+                    textos : textos
+                });
             }
         });
     });
