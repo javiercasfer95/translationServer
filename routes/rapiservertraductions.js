@@ -4,7 +4,9 @@ module.exports = function (app, gestorBD, gestorServer, traductor) {
     app.get("/", function (req, res) {
         res.status(200);
         res.json({
-            msj : "Servidor de idiomas fncionando...\nAutor: Javier Castro\nProyecto: Trabajo de fin de carrera"
+            msj : "Servidor de idiomas funcionando...",
+            autor : "Autor: Javier Castro",
+            Proyecto : "Proyecto: Trabajo de fin de carrera"
         });
     });
     app.get("/texto", function (req, res){
