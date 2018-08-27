@@ -267,7 +267,10 @@ module.exports = function (app, gestorBD, gestorServer, traductor) {
     });
 
     app.get("/usuarios", function (req, res) {
-        gestorBD.obtenerTodosUsuario( function (result) {
+        var criterio = {
+
+        }
+        gestorBD.obtenerTodosUsuario( criterio, function (result) {
             if(result == null){
                 res.status(401);
                 res.json({

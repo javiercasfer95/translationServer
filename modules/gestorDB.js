@@ -104,13 +104,13 @@ module.exports = {
                 });
 			}
         });
-    }, obtenerTodosUsuario : function (funcionCallback){
+    }, obtenerTodosUsuario : function (criterio, funcionCallback){
         this.mongo.MongoClient.connect(this.app.get('db'), function(err, db){
             if(err){
                 funcionCallback(null);
             }else{
                 var colleciton = db.collection('usuarios');
-                colleciton.toArray(function(err, usuarios){
+                colleciton.find(criterio).toArray(function(err, usuarios){
                     if(err){
                         funcionCallback(null);
                     }else{
