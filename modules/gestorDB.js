@@ -104,5 +104,21 @@ module.exports = {
                 });
 			}
         });
+    }, obtenerTodosUsuario : function (funcionCallback){
+        this.mongo.MongoClient.connect(this.app.get('db'), function(err, db){
+            if(err){
+                funcionCallback(null);
+            }else{
+                var colleciton = db.collection('usuarios');
+                colleciton.toArray(function(err, usuarios){
+                    if(err){
+                        funcionCallback(null);
+                    }else{
+                        funcionCallback(usuarios);
+                    }
+                    db.close();
+                });
+            }
+        });
     }
 }

@@ -230,4 +230,55 @@ module.exports = function (app, gestorBD, gestorServer, traductor) {
             }
         });
     })
+
+    app.get("/usuario", function (req, res) {
+        var email = req.body.email;
+        var pass = req.body.pass;
+        var criterio = {
+
+        }
+        if(email != null && pass != null){
+            criterio ={
+                email : email,
+                pass : pass
+            }
+        }
+
+        if(email == null || pass == null){
+            res.satutus(401);
+            res.json({
+                msj : "Se requiere un email y una contraseña."
+            })
+
+        }
+        gestorBD.obtenerDatosUsuario(criterio, function (result) {
+           if(result == null){
+               res.status(401);
+               res.json({
+                   msj : "No se han encontrado usuarios."
+               });
+           } else{
+               res.status(200);
+               res.json({
+                   usuario : result
+               })
+           }
+        });
+    });
+
+    app.get("/usuarios", function (req, res) {
+        gestorBD.obtenerTodosUsuario( function (result) {
+            if(result == null){
+                res.status(401);
+                res.json({
+                    msj : "No se han encontrado usuarios."
+                });
+            } else{
+                res.status(200);
+                res.json({
+                    usuarios : result
+                })
+            }
+        });
+    });
 }
