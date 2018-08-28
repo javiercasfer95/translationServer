@@ -18,7 +18,7 @@ module.exports = function (app, gestorBD, gestorServer, traductor) {
         }
         //criterio = {}
     console.log(criterio);
-        gestorBD.obtenerTextosNivel(criterio, function(textos){
+        gestorBD.obtenerTextos(criterio, function(textos){
             if(textos == null){
                 var txts = [];
                 //res.send(JSON.stringify(txts)); //Le mando un array vacio de datos, lo cual quiere decir que no se han encontrado textos de ese nivel.
@@ -107,10 +107,57 @@ module.exports = function (app, gestorBD, gestorServer, traductor) {
     })
 
     app.delete("/texto", function (req, res) {
+        var texto = req.query.texto;
+        var nivel = parseInt(req.query.lv);
+        var lang = req.query.lang;
+        var mitexto = {
+
+        }
+        if(texto == null || nivel == null || lang == null){
+            res.status(401);
+            res.json({
+                msj : "Se necesitan todas las propiedes del texto."
+            })
+        }else{
+            mitexto = {
+                texto : texto,
+                nivel : nivel,
+                lang : lang
+            }
+            gestorBD.obtenerTextos(mitexto, function (result) {
+                if(result == null){
+                    res.status(401);
+                    res.json({
+                        msj : "No se ha encontrado ningun texto para borrar",
+                        texto : mitexto
+                    })
+                }else{
+                    console.log(result[0]);
+                    gestorBD.borrarTexto(result[0], function (r) {
+                        if(r == null){
+                            res.status(401);
+                            res.json({
+                                msj : "No se ha podido borrar el texto",
+                                obj : mitexto
+                            })
+                        }else{
+                            res.status(200);
+                            res.json({
+                                msj : "El texto se ha eliminado correctamente.",
+                                texto : mitexto
+                            })
+                        }
+                    })
+                }
+            })
+
+        }
+        /*
         res.status(200)
         res.json({
             msj: "Esto debe borrar el texto que se indica y todas las traducciones en caso de haberlas. Mismo id."
         })
+        */
     });
 
     app.post("/identificarse", function (req, res) {
