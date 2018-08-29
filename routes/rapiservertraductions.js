@@ -55,7 +55,7 @@ module.exports = function (app, gestorBD, gestorServer, traductor) {
         }
 
         //criterio = {}
-        gestorBD.obtenerTextosNivel(criterio, function (textos) {
+        gestorBD.obtenerTextos(criterio, function (textos) {
             if(textos == null){
                 res.status(401);
                 res.json({
