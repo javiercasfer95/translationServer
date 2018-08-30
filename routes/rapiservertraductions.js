@@ -193,9 +193,7 @@ module.exports = function (app, gestorBD, gestorServer, traductor) {
         //Esto sirve para agregar un usuario nuevo a la base de datos.
         var email = req.body.email;
         var pass = req.body.pass;
-        var estadisticas = {
-
-        }
+        var estadisticas = []
         var user = {
             email : email,
             pass : pass,
