@@ -66,10 +66,10 @@ module.exports = function (app, gestorBD, gestorServer, traductor) {
                 res.json({
                     error: "No se han encotnrado textos de ese nivel."
                 })
-            } else if (textos.length == 0) {
+            } else if (textos.length != 0) {
                 res.status(401);
                 res.json({
-                    msj: "No se han encontrado textos."
+                    msj: "Se han encontrado textos con esos datos."
                 });
             } else {
                 var id1 = 0, id2 = 0;
@@ -238,10 +238,10 @@ module.exports = function (app, gestorBD, gestorServer, traductor) {
                     res.json({
                         error: "Ha ocurrido un error al verificar si existe un usuario con el email: " + email
                     })
-                } else if (result.length == 0) {
+                } else if (result.length != 0) {
                     res.status(401);
                     res.json({
-                        msj: "No se han encontrado usuarios."
+                        msj: "Se han encontrado usuarios con ese mail."
                     });
                 } else if (result.length == 0) {
                     console.log("No ha encontrado un usuario con ese email. Seguimos.")
