@@ -26,6 +26,11 @@ module.exports = function (app, gestorBD, gestorServer, traductor) {
                 res.json({
                     error: "Error al obtener los textos del idioma " + lang + " del nivel " + lv
                 });
+            } else if (textos.length == 0) {
+                res.status(401);
+                res.json({
+                    msj: "No se han encontrado textos."
+                });
             } else {
                 //res.send(JSON.stringify(usuarios));
                 //res.send(textos);
@@ -61,6 +66,11 @@ module.exports = function (app, gestorBD, gestorServer, traductor) {
                 res.json({
                     error: "No se han encotnrado textos de ese nivel."
                 })
+            } else if (textos.length == 0) {
+                res.status(401);
+                res.json({
+                    msj: "No se han encontrado textos."
+                });
             } else {
                 var id1 = 0, id2 = 0;
                 var elem;
@@ -130,6 +140,11 @@ module.exports = function (app, gestorBD, gestorServer, traductor) {
                         msj: "No se ha encontrado ningun texto para borrar",
                         texto: mitexto
                     })
+                } else if (result.length == 0) {
+                    res.status(401);
+                    res.json({
+                        msj: "No se han encontrado textos."
+                    });
                 } else {
                     console.log(result[0]);
                     gestorBD.borrarTexto(result[0], function (r) {
@@ -162,146 +177,141 @@ module.exports = function (app, gestorBD, gestorServer, traductor) {
     app.post("/identificarse", function (req, res) {
         //Esto sirve para identificarse como usuario y obtener los datos.
         //IMPORTANTE: La contraseña tiene que llegar cifrada.
-        try {
-            var email = req.body.email;
-            var pass = req.body.pass;
-            criterio = {
-                email: email,
-                pass: pass
-            }
-            gestorBD.obtenerDatosUsuario(criterio, function (result) {
-                if (result == null) {
-                    res.status(401);
-                    res.json({
-                        error: "No se ha encontrado el usuario indicado."
-                    });
-                } else {
-                    console.log("Usuario obtenido: ");
-                    console.log(result);
-                    res.status(200);
-                    var mauser = {
-                        email: result[0]["email"],
-                        pass: result[0]["pass"],
-                        estadisticas: result[0]["estadisticas"]
-                    }
-                    //res.send(JSON.stringify(mauser));
-                    res.send(mauser);
-                }
-            });
-        }catch(error){
-            res.status(401);
-            res.json({
-                msj : "Ha ocurrido un error interno"
-            })
+
+        var email = req.body.email;
+        var pass = req.body.pass;
+        criterio = {
+            email: email,
+            pass: pass
         }
+        gestorBD.obtenerDatosUsuario(criterio, function (result) {
+            if (result == null) {
+                res.status(401);
+                res.json({
+                    error: "Error al buscar usuarios."
+                });
+            } else if (result.length == 0) {
+                res.status(401);
+                res.json({
+                    msj: "No se han encontrado usuarios."
+                });
+            } else {
+                console.log("Usuario obtenido: ");
+                console.log(result);
+                res.status(200);
+                var mauser = {
+                    email: result[0]["email"],
+                    pass: result[0]["pass"],
+                    estadisticas: result[0]["estadisticas"]
+                }
+                //res.send(JSON.stringify(mauser));
+                res.send(mauser);
+            }
+        });
+
     });
     app.post("/usuario", function (req, res) {
         //Esto sirve para agregar un usuario nuevo a la base de datos.
-        try {
-            var email = req.body.email;
-            var pass = req.body.pass;
 
-            var estadisticas = []
-            if (email == null || pass == null) {
-                res.status(401);
-                res.json({
-                    msj: "Faltan parámetros"
-                })
-            } else {
-                var user = {
-                    email: email,
-                    pass: pass,
-                    estadisticas: estadisticas
-                }
-                var criterio = {
-                    email: email
-                }
-                gestorBD.obtenerDatosUsuario(criterio, function (result) {
+        var email = req.body.email;
+        var pass = req.body.pass;
 
-                    if (result == null) {
-                        res.status(401);
-                        res.json({
-                            error: "Ha ocurrido un error al verificar si existe un usuario con el email: " + email
-                        })
-                    } else if (result.length == 0) {
-                        console.log("No ha encontrado un usuario con ese email. Seguimos.")
-                        gestorBD.insertarUsuario(user, function (result) {
-                            if (result == null) {
-                                res.status(401);
-                                res.json({
-                                    error: "No se ha podido insertar el usuario en la base de datos."
-                                })
-                            } else {
-                                res.status(200);
-                                res.json({
-                                    msj: "El usuario se ha insertado correctamente.",
-                                    usuario: user
-                                });
-                            }
-                        });
-                    } else {
-                        res.status(401);
-                        res.json({
-                            error: "Ya existe un usuario con el email: " + email
-                        })
-                    }
-                });
-            }
-        } catch (error) {
+        var estadisticas = []
+        if (email == null || pass == null) {
             res.status(401);
             res.json({
                 msj: "Faltan parámetros"
             })
-        }
-    });
-
-    app.put("/usuario", function (req, res) {
-        try {
-            var email = req.body.email;
-            var pass = req.body.pass;
-            var estadisticas = req.body.estadisticas;
-            var criterio = {
-                email: email,
-                pass: pass
-            }
+        } else {
             var user = {
                 email: email,
                 pass: pass,
                 estadisticas: estadisticas
             }
+            var criterio = {
+                email: email
+            }
             gestorBD.obtenerDatosUsuario(criterio, function (result) {
+
                 if (result == null) {
                     res.status(401);
                     res.json({
-                        error: "Error al verificar que el usuario es el correcto"
+                        error: "Ha ocurrido un error al verificar si existe un usuario con el email: " + email
                     })
                 } else if (result.length == 0) {
                     res.status(401);
                     res.json({
-                        error: "No se ha encontrado el usuario."
-                    })
-                } else {
-                    gestorBD.actualizarUsuario(criterio, user, function (result) {
+                        msj: "No se han encontrado usuarios."
+                    });
+                } else if (result.length == 0) {
+                    console.log("No ha encontrado un usuario con ese email. Seguimos.")
+                    gestorBD.insertarUsuario(user, function (result) {
                         if (result == null) {
-                            res.status(401)
+                            res.status(401);
                             res.json({
-                                error: "Error al momento de actualizar los datos del usuario"
+                                error: "No se ha podido insertar el usuario en la base de datos."
                             })
                         } else {
                             res.status(200);
                             res.json({
-                                msj: "Las estadísticas del usuario se han actualizado correctamente."
-                            })
+                                msj: "El usuario se ha insertado correctamente.",
+                                usuario: user
+                            });
                         }
+                    });
+                } else {
+                    res.status(401);
+                    res.json({
+                        error: "Ya existe un usuario con el email: " + email
                     })
                 }
             });
-        } catch (error) {
-            res.status(401);
-            res.json({
-                msj: "Faltan parámetros"
-            })
         }
+
+    });
+
+    app.put("/usuario", function (req, res) {
+
+        var email = req.body.email;
+        var pass = req.body.pass;
+        var estadisticas = req.body.estadisticas;
+        var criterio = {
+            email: email,
+            pass: pass
+        }
+        var user = {
+            email: email,
+            pass: pass,
+            estadisticas: estadisticas
+        }
+        gestorBD.obtenerDatosUsuario(criterio, function (result) {
+            if (result == null) {
+                res.status(401);
+                res.json({
+                    error: "Error al verificar que el usuario es el correcto"
+                })
+            } else if (result.length == 0) {
+                res.status(401);
+                res.json({
+                    error: "No se ha encontrado el usuario."
+                })
+            } else {
+                gestorBD.actualizarUsuario(criterio, user, function (result) {
+                    if (result == null) {
+                        res.status(401)
+                        res.json({
+                            error: "Error al momento de actualizar los datos del usuario"
+                        })
+                    } else {
+                        res.status(200);
+                        res.json({
+                            msj: "Las estadísticas del usuario se han actualizado correctamente."
+                        })
+                    }
+                })
+            }
+        });
+
     });
 
     app.get("/usuario", function (req, res) {
@@ -326,6 +336,11 @@ module.exports = function (app, gestorBD, gestorServer, traductor) {
             if (result == null) {
                 res.status(401);
                 res.json({
+                    msj: "Error al buscar."
+                });
+            } else if (result.length == 0) {
+                res.status(401);
+                res.json({
                     msj: "No se han encontrado usuarios."
                 });
             } else {
@@ -341,6 +356,11 @@ module.exports = function (app, gestorBD, gestorServer, traductor) {
         var criterio = {}
         gestorBD.obtenerTodosUsuario(criterio, function (result) {
             if (result == null) {
+                res.status(401);
+                res.json({
+                    msj: "Error al buscar."
+                });
+            } else if (result.length == 0) {
                 res.status(401);
                 res.json({
                     msj: "No se han encontrado usuarios."
