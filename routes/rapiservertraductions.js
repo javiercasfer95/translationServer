@@ -197,7 +197,7 @@ module.exports = function (app, gestorBD, gestorServer, traductor) {
         var user = {
             email : email,
             pass : pass,
-            estadisiticas : estadisticas
+            estadisticas : estadisticas
         }
         var criterio = {
             email : email
