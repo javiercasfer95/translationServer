@@ -194,44 +194,51 @@ module.exports = function (app, gestorBD, gestorServer, traductor) {
         var email = req.body.email;
         var pass = req.body.pass;
         var estadisticas = []
-        var user = {
-            email : email,
-            pass : pass,
-            estadisticas : estadisticas
-        }
-        var criterio = {
-            email : email
-        }
-        gestorBD.obtenerDatosUsuario(criterio, function (result) {
-
-            if(result == null){
-                res.status(401);
-                res.json({
-                    error : "Ha ocurrido un error al verificar si existe un usuario con el email: " + email
-                })
-            }else if(result.length == 0){
-                console.log("No ha encontrado un usuario con ese email. Seguimos.")
-                gestorBD.insertarUsuario(user, function (result) {
-                    if(result == null){
-                        res.status(401);
-                        res.json({
-                            error : "No se ha podido insertar el usuario en la base de datos."
-                        })
-                    }else{
-                        res.status(200);
-                        res.json({
-                            msj : "El usuario se ha insertado correctamente.",
-                            usuario : user
-                        });
-                    }
-                });
-            }else{
-                res.status(401);
-                res.json({
-                    error : "Ya existe un usuario con el email: " + email
-                })
+        if(email == null || pass == null){
+            res.status(401);
+            res.json({
+                msj : "Faltan parámetros"
+            })
+        }else {
+            var user = {
+                email: email,
+                pass: pass,
+                estadisticas: estadisticas
             }
-        });
+            var criterio = {
+                email: email
+            }
+            gestorBD.obtenerDatosUsuario(criterio, function (result) {
+
+                if (result == null) {
+                    res.status(401);
+                    res.json({
+                        error: "Ha ocurrido un error al verificar si existe un usuario con el email: " + email
+                    })
+                } else if (result.length == 0) {
+                    console.log("No ha encontrado un usuario con ese email. Seguimos.")
+                    gestorBD.insertarUsuario(user, function (result) {
+                        if (result == null) {
+                            res.status(401);
+                            res.json({
+                                error: "No se ha podido insertar el usuario en la base de datos."
+                            })
+                        } else {
+                            res.status(200);
+                            res.json({
+                                msj: "El usuario se ha insertado correctamente.",
+                                usuario: user
+                            });
+                        }
+                    });
+                } else {
+                    res.status(401);
+                    res.json({
+                        error: "Ya existe un usuario con el email: " + email
+                    })
+                }
+            });
+        }
     });
 
     app.put("/usuario", function (req, res) {
