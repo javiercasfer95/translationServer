@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e7d51713-f73b-4639-8e4d-70e2449d5a52" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/routes/rapiservertraductions.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/rapiservertraductions.js" afterDir="false" />
-    </list>
+    <list default="true" id="e7d51713-f73b-4639-8e4d-70e2449d5a52" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -46,8 +44,8 @@
       <file leaf-file-name="rapiservertraductions.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/rapiservertraductions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="482" column="82" selection-start-line="482" selection-start-column="82" selection-end-line="482" selection-end-column="82" />
+            <state relative-caret-position="228">
+              <caret line="22" column="30" lean-forward="true" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -190,12 +188,12 @@
       <workItem from="1535448565840" duration="4162000" />
       <workItem from="1535524601470" duration="1847000" />
       <workItem from="1535610451326" duration="7288000" />
-      <workItem from="1535697076749" duration="13697000" />
+      <workItem from="1535697076749" duration="13974000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48922000" />
+    <option name="totallyTimeSpent" value="49199000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -571,8 +569,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/rapiservertraductions.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="482" column="82" selection-start-line="482" selection-start-column="82" selection-end-line="482" selection-end-column="82" />
+        <state relative-caret-position="228">
+          <caret line="22" column="30" lean-forward="true" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
         </state>
       </provider>
     </entry>

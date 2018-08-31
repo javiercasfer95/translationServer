@@ -486,7 +486,7 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
                 })
             }
         })
-    }
+    });
 
     app.get("/isoCodes", function (req, res) {
         isoCodes.obtenerCodigosIso(function (result) {
