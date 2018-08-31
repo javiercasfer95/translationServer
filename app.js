@@ -8,24 +8,32 @@ var apiKey = 0;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//Limitless Translate api
+// https://www.npmjs.com/package/limitless-google-translate
 
 var gestorDB = require("./modules/gestorDB.js");
 var googleTranslate = require('google-translate')(apiKey); //Conseguir la apiKey
+var limitless = require('limitless-google-translate');
 var gestorServer = require("./modules/gestorServer.js");
+var isoCodes = require('iso-639-1');
 app.set('port', (process.env.PORT || 8081));
 app.set('db', 'mongodb://admin:tfgjavier123@ds125372.mlab.com:25372/tfgjavier');
 app.set('appLang', 'es');
 var traductor = require("./modules/traductor.js");
+var limitlessTraductor = require("./modules/traductorLimitless.js");
+var isoLangCodes = require("./modules/isoLangCodes.js");
 
 gestorDB.init(app, mongo);
 traductor.init(app, googleTranslate);
 gestorServer.init(app, gestorDB, traductor);
+limitlessTraductor.init(app, limitless);
+isoLangCodes.init(app, isoCodes);
 
 //Require
 require("./routes/rtexts.js")(app, gestorDB); // app para que la utilice el route.
 require("./routes/rtest.js")(app, gestorDB, traductor, gestorServer);
 require("./routes/rusuarios.js")(app, gestorDB);
-require("./routes/rapiservertraductions.js")(app, gestorDB, gestorServer, traductor);
+require("./routes/rapiservertraductions.js")(app, gestorDB, gestorServer, traductor, limitlessTraductor, isoLangCodes);
 app.get("/", function (req, res) {
     res.send("Servidor en funcionamiento.");
 });

@@ -21,6 +21,22 @@ module.exports = {
                 });
             }
         });
+    }, insertTextAll : function(textos, funcionCallBack){
+        this.mongo.MongoClient.connect(this.app.get('db'), function (err, db) {
+            if (err) {
+                funcionCallback(null);
+            } else {
+                var collection = db.collection('textos');
+                collection.insertMany(texto, function (err, result) {
+                    if (err) {
+                        funcionCallback(null);
+                    } else {
+                        funcionCallback(result.ops[0]._id);
+                    }
+                    db.close();
+                });
+            }
+        });
     }, borrarTexto: function (texto, funcionCallback) {
         this.mongo.MongoClient.connect(this.app.get('db'), function (err, db) {
             if (err) {
@@ -44,14 +60,23 @@ module.exports = {
                 funcionCallback(null);
             } else {
                 var collection = db.collection('langCodes');
-                collection.insert(codes, function (err, result) {
-                    if (err) {
+                collection.remove({},function (err, ok) {
+                    if(err){
+                        console.log("No ha hecho el drop de langCodes")
                         funcionCallback(null);
-                    } else {
-                        funcionCallback(result.ops[0]._id);
+                    }else{
+                        collection.insertMany(codes, function (err, result) {
+                            console.log("He llegado al insertManyCodes");
+                            if (err) {
+                                funcionCallback(null);
+                            } else {
+                                funcionCallback(result);
+                            }
+                            db.close();
+                        });
                     }
-                    db.close();
-                });
+                })
+
             }
         });
     },

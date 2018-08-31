@@ -1,5 +1,5 @@
 module.exports = {
-    traductor: null,
+    limitless: null,
     app: null,
     init: function (app, traductor) {
         this.traductor = traductor;
@@ -54,5 +54,14 @@ module.exports = {
                 // => [{ language: "en", name: "Englisch" }, ...]
             }
         });
+    },
+    getSupportedLanguagesCodes: function (funcionCallback) {
+        this.traductor.getSupportedLanguages(function (err, languageCodes) {
+            if (err) {
+                funcionCallback(null);
+            } else {
+                funcionCallback(languageCodes);
+            }
+        })
     }
 }

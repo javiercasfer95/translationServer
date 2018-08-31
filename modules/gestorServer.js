@@ -1,7 +1,7 @@
 module.exports = {
     gestorDB: null,
     app: null,
-    traductor: null,
+    limitless: null,
     langCodes: null,
     init: function (app, gestorDB, traductor) {
         this.gestorDB = gestorDB;
@@ -11,7 +11,7 @@ module.exports = {
     getLangNames: function () {
         //Este metodo igual es mejor no usarlo y que el cliente guarde directamente todo el array name/code.
         if (langCodes == null) {
-            traductor.getSupportedLanguages(function (newlangCodes) {
+            limitless.getSupportedLanguages(function (newlangCodes) {
                 this.langCodes = newlangCodes;
                 langNamesArray();
             });
@@ -30,7 +30,7 @@ module.exports = {
     getLangCode: function () {
         //Yo creo que lo mejor es usar esta.
         if (langCodes == null) {
-            traductor.getSupportedLanguages(function (newlangCodes) {
+            limitless.getSupportedLanguages(function (newlangCodes) {
 
                 this.langCodes = newlangCodes;
                 return this.langCodes;

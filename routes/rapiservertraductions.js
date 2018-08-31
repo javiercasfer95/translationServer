@@ -1,4 +1,4 @@
-module.exports = function (app, gestorBD, gestorServer, traductor) {
+module.exports = function (app, gestorBD, gestorServer, traductor, limitless, isoCodes) {
 
 
     app.get("/", function (req, res) {
@@ -369,4 +369,140 @@ module.exports = function (app, gestorBD, gestorServer, traductor) {
             }
         });
     });
+
+    //------------------- Traduccion de textos -------------------
+
+    app.get("/traducirAllTextos", function (req, res) {
+        var langFrom = "ES";
+        var criterio = {
+            lang : "ES"
+        }
+        gestorBD.obtenerTextos(criterio, function (textos) {
+            if (textos == null) {
+                var txts = [];
+                //res.send(JSON.stringify(txts)); //Le mando un array vacio de datos, lo cual quiere decir que no se han encontrado textos de ese nivel.
+                res.status(401);
+                res.json({
+                    error: "Error al obtener los textos del idioma " + lang + " del nivel " + lv
+                });
+            } else if (textos.length == 0) {
+                res.status(401);
+                res.json({
+                    msj: "No se han encontrado textos para traducir."
+                });
+            } else {
+                var misTextosTraducidos = texots;
+                traductor.getSupportedLanguagesCodes(function (res) {
+                    if(res == null){
+                        res.status(501);
+                        res.json({
+                            msj : "Ha fallado la obtencion de los codigos de idioma"
+                        })
+                    }else{
+                        res.status(501);
+                        res.json({
+                            msj : "No se ha implementado por completo"
+                        })
+                    }
+                })
+            }
+        });
+    })
+
+
+    app.get("/traducir", function (req, res) {
+        var texto = req.query.texto;
+        var langFrom = req.query.langFrom;
+        var langTo = req.query.langTo;
+        limitless.traducirTexto(texto, langFrom, langTo, function (result) {
+            if(result == null){
+                res.status(501);
+                res.json({
+                    msj : "No ha ido bien el temita."
+                })
+            }else{
+                res.status(200);
+                res.json({
+                    resultado : result
+                })
+            }
+        })
+    })
+
+    app.post("/traducirLista", function (req, res) {
+        var textos = req.body.textos;
+        console.log(textos);
+        var langFrom = req.body.langFrom;
+        var langTo = req.body.langTo;
+        limitless.traducirListaTextos(textos, langFrom, langTo, function (result) {
+            if(result == null){
+                res.status(501);
+                res.json({
+                    msj : "No ha ido bien el temita."
+                })
+            }else{
+                console.log("Respuesta: ");
+                console.log(result)
+                res.status(200);
+                res.json({
+                    resultado : result
+                })
+            }
+        })
+    })
+
+    app.get("/isoCodes", function (req, res) {
+        isoCodes.obtenerCodigosIso(function (result) {
+            res.status(200);
+            res.json({
+                codigos : result
+            })
+        })
+    })
+
+    app.get("/allLanguages", function (req, res) {
+        isoCodes.obtenerParCodigoLangIso(function (result) {
+            res.status(200);
+            res.json({
+                codigos : result
+            })
+        })
+    })
+
+    app.post("/idiomasIso", function (req, res) {
+        isoCodes.obtenerParCodigoLangIso(function (result) {
+            /*
+            Tengo un objeto json del tipo
+            {
+                "codigos" : [
+                { "codigo" : "a",
+                    "idioma" : "aIdioma"
+                    },
+                    { "codigo" : "b",
+                    "idioma" : "bIdioma"
+                    }
+                ]
+            }
+             */
+            console.log(result);
+            var codigos = result;
+            gestorBD.insertLangCodes(codigos, function (respuesta) {
+                if(respuesta == null){
+                    res.status(401);
+                    res.json({
+                        msj : "Error al añadir los codigos iso a la base de datos."
+                    })
+                }else{
+                    res.status(200);
+                    res.json({
+                        msj : "Los codigos se han añadido correctamente"
+                    })
+                }
+            })
+            }
+        )
+    })
+
+
+    //----------------- FIN Traduccion de textos -----------------
 }
