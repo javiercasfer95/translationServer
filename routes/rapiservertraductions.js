@@ -61,15 +61,11 @@ module.exports = function (app, gestorBD, gestorServer, traductor) {
 
         //criterio = {}
         gestorBD.obtenerTextos(criterio, function (textos) {
+            //En este comprobar que el resultado texto.length = 0 no es necesario.
             if (textos == null) {
                 res.status(401);
                 res.json({
                     error: "No se han encotnrado textos de ese nivel."
-                })
-            } else if (textos.length != 0) {
-                res.status(401);
-                res.json({
-                    msj: "Se han encontrado textos con esos datos."
                 });
             } else {
                 var id1 = 0, id2 = 0;
