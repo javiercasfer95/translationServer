@@ -27,7 +27,7 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
                     error: "Error al obtener los textos del idioma " + lang + " del nivel " + lv
                 });
             } else if (textos.length == 0) {
-                res.status(401);
+                res.status(200);
                 res.json({
                     msj: "No se han encontrado textos."
                 });
@@ -450,6 +450,43 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
             }
         })
     })
+
+    app.post("/traducirTextosEinsertar", function (req, res) {
+        var textos = req.body.textos;
+        console.log(textos);
+        var langFrom = req.body.langFrom;
+        var langTo = req.body.langTo;
+        limitless.traducirListaTextos(textos, langFrom, langTo, function (result) {
+            if(result == null){
+                res.status(501);
+                res.json({
+                    msj : "No ha ido bien el temita."
+                })
+            }else{
+                /*
+                console.log("Respuesta: ");
+                console.log(result)
+                res.status(200);
+                res.json({
+                    resultado : result
+                })*/
+                var textos = result["textos"];
+                gestorBD.insertTextAll(textos, function (resultado) {
+                    if(resultado == null){
+                        res.status(401);
+                        res.json({
+                            msj : "No ha ido bien la cosa."
+                        })
+                    }else{
+                        res.status(200);
+                        res.json({
+                            msj : "Textos traducidos e introducidos correctamente"
+                        })
+                    }
+                })
+            }
+        })
+    }
 
     app.get("/isoCodes", function (req, res) {
         isoCodes.obtenerCodigosIso(function (result) {
