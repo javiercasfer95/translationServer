@@ -55,6 +55,7 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
         var nivel = req.body.lv;
         var idioma = req.body.lang;
         var nLang = idioma.toLowerCase();
+        idioma = nLang;
         criterio = {
             nivel: nivel,
             lang: idioma

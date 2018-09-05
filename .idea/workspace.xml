@@ -37,8 +37,8 @@
       <file leaf-file-name="rapiservertraductions.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/rapiservertraductions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="597" column="18" lean-forward="true" selection-start-line="597" selection-start-column="18" selection-end-line="597" selection-end-column="18" />
+            <state relative-caret-position="-561">
+              <caret line="57" column="14" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -55,8 +55,8 @@
       <file leaf-file-name="gestorDB.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/gestorDB.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-140">
-              <caret line="68" column="30" selection-start-line="68" selection-start-column="30" selection-end-line="68" selection-end-column="30" />
+            <state relative-caret-position="119">
+              <caret line="7" column="31" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -219,12 +219,12 @@
       <workItem from="1535610451326" duration="7288000" />
       <workItem from="1535697076749" duration="14549000" />
       <workItem from="1536054690180" duration="7786000" />
-      <workItem from="1536129069414" duration="1778000" />
+      <workItem from="1536129069414" duration="2050000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59338000" />
+    <option name="totallyTimeSpent" value="59610000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -619,15 +619,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/gestorDB.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-140">
-          <caret line="68" column="30" selection-start-line="68" selection-start-column="30" selection-end-line="68" selection-end-column="30" />
+        <state relative-caret-position="119">
+          <caret line="7" column="31" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/rapiservertraductions.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="597" column="18" lean-forward="true" selection-start-line="597" selection-start-column="18" selection-end-line="597" selection-end-column="18" />
+        <state relative-caret-position="-561">
+          <caret line="57" column="14" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="14" />
         </state>
       </provider>
     </entry>
