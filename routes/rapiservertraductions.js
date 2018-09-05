@@ -379,7 +379,7 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
     app.get("/traducirAllTextosMAL", function (req, res) {
         var langFrom = "ES".toLowerCase();
         var criterio = {
-            lang : langFrom
+            lang: langFrom
         }
         gestorBD.obtenerTextos(criterio, function (textos) {
             if (textos == null) {
@@ -397,15 +397,15 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
             } else {
                 var misTextosTraducidos = texots;
                 traductor.getSupportedLanguagesCodes(function (res) {
-                    if(res == null){
+                    if (res == null) {
                         res.status(501);
                         res.json({
-                            msj : "Ha fallado la obtencion de los codigos de idioma"
+                            msj: "Ha fallado la obtencion de los codigos de idioma"
                         })
-                    }else{
+                    } else {
                         res.status(501);
                         res.json({
-                            msj : "No se ha implementado por completo"
+                            msj: "No se ha implementado por completo"
                         })
                     }
                 })
@@ -419,15 +419,15 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
         var langFrom = req.query.langFrom.toLowerCase();
         var langTo = req.query.langTo.toLowerCase();
         limitless.traducirTexto(texto, langFrom, langTo, function (result) {
-            if(result == null){
+            if (result == null) {
                 res.status(501);
                 res.json({
-                    msj : "No ha ido bien el temita."
+                    msj: "No ha ido bien el temita."
                 })
-            }else{
+            } else {
                 res.status(200);
                 res.json({
-                    resultado : result
+                    resultado: result
                 })
             }
         })
@@ -439,17 +439,17 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
         var langFrom = req.body.langFrom.toLowerCase();
         var langTo = req.body.langTo.toLowerCase();
         limitless.traducirListaTextos(textos, langFrom, langTo, function (result) {
-            if(result == null){
+            if (result == null) {
                 res.status(501);
                 res.json({
-                    msj : "No ha ido bien el temita."
+                    msj: "No ha ido bien el temita."
                 })
-            }else{
+            } else {
                 console.log("Respuesta: ");
                 console.log(result)
                 res.status(200);
                 res.json({
-                    resultado : result
+                    resultado: result
                 })
             }
         })
@@ -461,12 +461,12 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
         var langFrom = req.body.langFrom.toLowerCase();
         var langTo = req.body.langTo.toLowerCase();
         limitless.traducirListaTextos(textos, langFrom, langTo, function (result) {
-            if(result == null){
+            if (result == null) {
                 res.status(501);
                 res.json({
-                    msj : "No ha ido bien el temita."
+                    msj: "No ha ido bien el temita."
                 })
-            }else{
+            } else {
                 /*
                 console.log("Respuesta: ");
                 console.log(result)
@@ -476,15 +476,15 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
                 })*/
                 var textos = result["textos"];
                 gestorBD.insertTextAll(textos, function (resultado) {
-                    if(resultado == null){
+                    if (resultado == null) {
                         res.status(401);
                         res.json({
-                            msj : "No ha ido bien la cosa."
+                            msj: "No ha ido bien la cosa."
                         })
-                    }else{
+                    } else {
                         res.status(200);
                         res.json({
-                            msj : "Textos traducidos e introducidos correctamente"
+                            msj: "Textos traducidos e introducidos correctamente"
                         })
                     }
                 })
@@ -496,7 +496,7 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
         isoCodes.obtenerCodigosIso(function (result) {
             res.status(200);
             res.json({
-                codigos : result
+                codigos: result
             })
         })
     })
@@ -505,41 +505,41 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
         isoCodes.obtenerParCodigoLangIso(function (result) {
             res.status(200);
             res.json({
-                codigos : result
+                codigos: result
             })
         })
     })
 
     app.post("/idiomasIso", function (req, res) {
         isoCodes.obtenerParCodigoLangIso(function (result) {
-            /*
-            Tengo un objeto json del tipo
-            {
-                "codigos" : [
-                { "codigo" : "a",
-                    "idioma" : "aIdioma"
-                    },
-                    { "codigo" : "b",
-                    "idioma" : "bIdioma"
-                    }
-                ]
-            }
-             */
-            console.log(result);
-            var codigos = result;
-            gestorBD.insertLangCodes(codigos, function (respuesta) {
-                if(respuesta == null){
-                    res.status(401);
-                    res.json({
-                        msj : "Error al añadir los codigos iso a la base de datos."
-                    })
-                }else{
-                    res.status(200);
-                    res.json({
-                        msj : "Los codigos se han añadido correctamente"
-                    })
+                /*
+                Tengo un objeto json del tipo
+                {
+                    "codigos" : [
+                    { "codigo" : "a",
+                        "idioma" : "aIdioma"
+                        },
+                        { "codigo" : "b",
+                        "idioma" : "bIdioma"
+                        }
+                    ]
                 }
-            })
+                 */
+                console.log(result);
+                var codigos = result;
+                gestorBD.insertLangCodes(codigos, function (respuesta) {
+                    if (respuesta == null) {
+                        res.status(401);
+                        res.json({
+                            msj: "Error al añadir los codigos iso a la base de datos."
+                        })
+                    } else {
+                        res.status(200);
+                        res.json({
+                            msj: "Los codigos se han añadido correctamente"
+                        })
+                    }
+                })
             }
         )
     })
@@ -547,36 +547,36 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
     app.get("/admin/actualizarIdiomas", function (req, res) {
         var textoPrueba = "Anoche amoché en un canchal y me quedé moñeco.";
         isoCodes.obtenerParCodigoLangIso(function (result) {
-            if(result == null){
+            if (result == null) {
                 res.status(401);
                 res.json({
-                    msj : "No he obtenido los isoCodes"
+                    msj: "No he obtenido los isoCodes"
                 });
-            }else{
+            } else {
                 var isoCodes = result; // codigo : es , idioma : Spanish <- IngléqSs
                 console.log(isoCodes)
                 console.log("Longitud de codes sin modificar");
                 console.log(isoCodes.length);
                 //console.log(isoCodes)
                 gestorServer.obtenerIdiomasCompatibles(isoCodes, textoPrueba, function (resGServer) {
-                    if(resGServer == null){
+                    if (resGServer == null) {
                         res.status(501);
                         res.json({
-                            msj : "Ha petado al obtener los idiomas compatibles"
+                            msj: "Ha petado al obtener los idiomas compatibles"
                         })
-                    }else{
+                    } else {
                         console.log(resGServer);
                         console.log("Nuevo tamaño:" + resGServer.length);
                         var lang;
                         var newLangs = [];
                         var auxLang;
-                        for(var j = 0; j < resGServer.length; j++){
-                            for(var h = 0; h < isoCodes.length; h++){
+                        for (var j = 0; j < resGServer.length; j++) {
+                            for (var h = 0; h < isoCodes.length; h++) {
                                 auxLang = isoCodes[h];
-                                if(auxLang["codigo"] == resGServer[j]){
+                                if (auxLang["codigo"] == resGServer[j]) {
                                     lang = {
-                                        codigo : resGServer[j],
-                                        idioma : auxLang["idioma"]
+                                        codigo: resGServer[j],
+                                        idioma: auxLang["idioma"]
                                     }
                                     //console.log(lang);
                                     newLangs.push(lang);
@@ -585,15 +585,15 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
 
                         }
                         gestorBD.insertLangCodes(newLangs, function (final) {
-                            if(final == null){
+                            if (final == null) {
                                 res.status(501);
                                 res.json({
-                                    msj : "Se han conseguido los codigos pero ha cascado al insertar en la BBDD"
+                                    msj: "Se han conseguido los codigos pero ha cascado al insertar en la BBDD"
                                 })
-                            }else{
+                            } else {
                                 res.status(200);
                                 res.json({
-                                    msj : "Se han insertado correctamente"
+                                    msj: "Se han insertado correctamente"
                                 })
                             }
                         })
@@ -607,11 +607,73 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
         /*
         Se parte siempre del español, es decir, se traducen los textos en español a otros idiomas y despues se insertan.
          */
+        var langFrom = "es";
         var criterio = {
-            lang : "es"
+            lang: langFrom
         }
+        gestorBD.obtenerTextos(criterio, function (misTextos) {
+            if (misTextos == null) {
+                res.status(501);
+                res.json({
+                    msj: "Error al obtener los textos para preparar la traducción"
+                })
+            } else {
+                var nuevosTextos = [];
+                criterio = {}
+                gestorBD.obtenerMisLangs(criterio, function (misLangCodes) {
+                    if (misLangCodes == null) {
+                        res.status(501);
+                        res.json({
+                            msj: "Error al obtener todos mis langCodes"
+                        })
+                    } else {
+                        //console.log(misLangCodes);
+                        var misLangs = [];
+                        var lang;
+                        for(var i = 0; i < misLangCodes.length; i++){
+                            lang = misLangCodes[i];
+                            misLangs.push(lang["codigo"]);
+                        }
+                        //console.log(misLangs)
+                        limitless.traducirPorTodosLosCodigos(misTextos, misLangs, langFrom, function (listaTraducida) {
+                            if(listaTraducida == null){
+                                res.status(501);
+                                res.json({
+                                    msj: "Error al traducir la lista"
+                                })
+                            }else{
+                                console.log("Tamaño de la lista: ", listaTraducida.length);
+                                console.log(listaTraducida);
+                                res.status(200);
+                                res.json({
+                                    resultado : listaTraducida,
+                                    msj : "Si que se han traducido los textos"
+                                })
+                            }
+                        })
+                    }
+                });
+            }
+        })
     })
 
+
+    /*
+
+    if (false) {
+                            gestorBD.eliminarTodosTextos(function (resultado) {
+                                if (resultado == null) {
+                                    res.status(501);
+                                    res.json({
+                                        msj: "Error al reiniciar la base de datos de textos"
+                                    })
+                                } else {
+
+                                }
+                            })
+                        }
+
+     */
 
     //----------------- FIN Traduccion de textos -----------------
 }

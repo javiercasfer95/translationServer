@@ -53,6 +53,21 @@ module.exports = {
                 })
             }
         })
+    }, eliminarTodosTextos : function(funcionCallback){
+        this.mongo.MongoClient.connect(this.app.get('db'), function (err, db){
+            if(err){
+                funcionCallback(null);
+            }else{
+                var collection = db.collection('textos');
+                collection.remove({}, function (err, ok) {
+                    if(err){
+                        funcionCallback(null);
+                    }else{
+                        funcionCallback(ok);
+                    }
+                })
+            }
+        });
     },
     insertLangCodes: function (codes, funcionCallback) {
         this.mongo.MongoClient.connect(this.app.get('db'), function (err, db) {
@@ -156,6 +171,22 @@ module.exports = {
                         funcionCallback(null);
                     } else {
                         funcionCallback(usuarios);
+                    }
+                    db.close();
+                });
+            }
+        });
+    }, obtenerMisLangs : function (criterio, funcionCallback) {
+        this.mongo.MongoClient.connect(this.app.get('db'), function (err, db) {
+            if (err) {
+                funcionCallback(null);
+            } else {
+                var colleciton = db.collection('langCodes');
+                colleciton.find(criterio).toArray(function (err, misLangCodes) {
+                    if (err) {
+                        funcionCallback(null);
+                    } else {
+                        funcionCallback(misLangCodes);
                     }
                     db.close();
                 });
