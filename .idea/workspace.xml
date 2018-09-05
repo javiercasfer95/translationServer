@@ -37,8 +37,8 @@
       <file leaf-file-name="rapiservertraductions.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/rapiservertraductions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-561">
-              <caret line="57" column="14" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="14" />
+            <state relative-caret-position="323">
+              <caret line="609" column="19" selection-start-line="609" selection-start-column="19" selection-end-line="609" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -219,12 +219,12 @@
       <workItem from="1535610451326" duration="7288000" />
       <workItem from="1535697076749" duration="14549000" />
       <workItem from="1536054690180" duration="7786000" />
-      <workItem from="1536129069414" duration="2050000" />
+      <workItem from="1536129069414" duration="2360000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59610000" />
+    <option name="totallyTimeSpent" value="59920000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -626,8 +626,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/rapiservertraductions.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-561">
-          <caret line="57" column="14" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="14" />
+        <state relative-caret-position="323">
+          <caret line="609" column="19" selection-start-line="609" selection-start-column="19" selection-end-line="609" selection-end-column="19" />
         </state>
       </provider>
     </entry>

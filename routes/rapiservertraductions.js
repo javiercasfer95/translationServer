@@ -12,6 +12,8 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
     app.get("/texto", function (req, res) {
         var lv = parseInt(req.query.lv);
         var lang = req.query.lang;
+        var nLang = lang.toLowerCase();
+        lang = nLang;
         var criterio = {
             "nivel": lv,
             "lang": lang
@@ -118,7 +120,7 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
     app.delete("/texto", function (req, res) {
         var texto = req.query.texto;
         var nivel = parseInt(req.query.lv);
-        var lang = req.query.lang;
+        var lang = req.query.lang.toLowerCase();
         var mitexto = {}
         if (texto == null || nivel == null || lang == null) {
             res.status(401);
@@ -374,10 +376,10 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
 
     //------------------- Traduccion de textos -------------------
 
-    app.get("/traducirAllTextos", function (req, res) {
-        var langFrom = "ES";
+    app.get("/traducirAllTextosMAL", function (req, res) {
+        var langFrom = "ES".toLowerCase();
         var criterio = {
-            lang : "ES"
+            lang : langFrom
         }
         gestorBD.obtenerTextos(criterio, function (textos) {
             if (textos == null) {
@@ -414,8 +416,8 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
 
     app.get("/traducir", function (req, res) {
         var texto = req.query.texto;
-        var langFrom = req.query.langFrom;
-        var langTo = req.query.langTo;
+        var langFrom = req.query.langFrom.toLowerCase();
+        var langTo = req.query.langTo.toLowerCase();
         limitless.traducirTexto(texto, langFrom, langTo, function (result) {
             if(result == null){
                 res.status(501);
@@ -434,8 +436,8 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
     app.post("/traducirLista", function (req, res) {
         var textos = req.body.textos;
         console.log(textos);
-        var langFrom = req.body.langFrom;
-        var langTo = req.body.langTo;
+        var langFrom = req.body.langFrom.toLowerCase();
+        var langTo = req.body.langTo.toLowerCase();
         limitless.traducirListaTextos(textos, langFrom, langTo, function (result) {
             if(result == null){
                 res.status(501);
@@ -456,8 +458,8 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
     app.post("/traducirTextosEinsertar", function (req, res) {
         var textos = req.body.textos;
         console.log(textos);
-        var langFrom = req.body.langFrom;
-        var langTo = req.body.langTo;
+        var langFrom = req.body.langFrom.toLowerCase();
+        var langTo = req.body.langTo.toLowerCase();
         limitless.traducirListaTextos(textos, langFrom, langTo, function (result) {
             if(result == null){
                 res.status(501);
