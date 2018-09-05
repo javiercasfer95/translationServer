@@ -25,7 +25,7 @@ var isoLangCodes = require("./modules/isoLangCodes.js");
 
 gestorDB.init(app, mongo);
 traductor.init(app, googleTranslate);
-gestorServer.init(app, gestorDB, traductor);
+gestorServer.init(app, gestorDB, limitless);
 limitlessTraductor.init(app, limitless);
 isoLangCodes.init(app, isoCodes);
 

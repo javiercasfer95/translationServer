@@ -540,6 +540,65 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
         )
     })
 
+    app.get("/actualizarIdiomas", function (req, res) {
+        var textoPrueba = "Anoche amoché en un canchal y me quedé moñeco.";
+        isoCodes.obtenerParCodigoLangIso(function (result) {
+            if(result == null){
+                res.status(401);
+                res.json({
+                    msj : "No he obtenido los isoCodes"
+                });
+            }else{
+                var isoCodes = result; // codigo : es , idioma : Spanish <- IngléqSs
+                console.log(isoCodes)
+                console.log("Longitud de codes sin modificar");
+                console.log(isoCodes.length);
+                //console.log(isoCodes)
+                gestorServer.obtenerIdiomasCompatibles(isoCodes, textoPrueba, function (resGServer) {
+                    if(resGServer == null){
+                        res.status(501);
+                        res.json({
+                            msj : "Ha petado al obtener los idiomas compatibles"
+                        })
+                    }else{
+                        console.log(resGServer);
+                        console.log("Nuevo tamaño:" + resGServer.length);
+                        var lang;
+                        var newLangs = [];
+                        var auxLang;
+                        for(var j = 0; j < resGServer.length; j++){
+                            for(var h = 0; h < isoCodes.length; h++){
+                                auxLang = isoCodes[h];
+                                if(auxLang["codigo"] == resGServer[j]){
+                                    lang = {
+                                        codigo : resGServer[j],
+                                        idioma : auxLang["idioma"]
+                                    }
+                                    //console.log(lang);
+                                    newLangs.push(lang);
+                                }
+                            }
+
+                        }
+                        gestorBD.insertLangCodes(newLangs, function (final) {
+                            if(final == null){
+                                res.status(501);
+                                res.json({
+                                    msj : "Se han conseguido los codigos pero ha cascado al insertar en la BBDD"
+                                })
+                            }else{
+                                res.status(200);
+                                res.json({
+                                    msj : "Se han insertado correctamente"
+                                })
+                            }
+                        })
+                    }
+                })
+            }
+        });
+    })
+
 
     //----------------- FIN Traduccion de textos -----------------
 }

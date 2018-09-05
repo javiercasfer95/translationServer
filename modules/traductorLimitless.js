@@ -15,13 +15,15 @@ module.exports = {
         }
         this.limitless.translate(texto, langs).then(
             (result) => {
+                console.log(result);
                 funcionCallBack(result);
             }
-        ).catch((err) => {
-            funcionCallBack(null);
+        ).catch(
+            (err) => {
+                console.log(err);
+                funcionCallBack(null);
         })
-    },
-    traducirListaTextos: function (listaObjetosTextosJson, langFrom, langTo, funcionCallBack) {
+    }, traducirListaTextos : function(listaObjetosTextosJson, langFrom, langTo, funcionCallBack) {
         console.log(listaObjetosTextosJson)
         var nto = langTo.toLowerCase();
         var nfrom = langFrom.toLowerCase();
@@ -54,6 +56,14 @@ module.exports = {
             }
         ).catch((err) => {
             funcionCallBack(null);
+        })
+    }, getSupportedLanguagesCodes : function (funcionCallback) {
+        this.limitless.getSupportedLanguagesCodes(function (err, codes) {
+            if(err){
+                funcionCallback(null);
+            }else{
+                funcionCallback(codes);
+            }
         })
     }
 }

@@ -66,7 +66,7 @@ module.exports = {
                         funcionCallback(null);
                     }else{
                         collection.insertMany(codes, function (err, result) {
-                            console.log("He llegado al insertManyCodes");
+                            //console.log("He llegado al insertManyCodes");
                             if (err) {
                                 funcionCallback(null);
                             } else {
