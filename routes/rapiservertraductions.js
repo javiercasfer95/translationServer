@@ -54,6 +54,7 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
         var texto = req.body.texto;
         var nivel = req.body.lv;
         var idioma = req.body.lang;
+        var nLang = idioma.toLowerCase();
         criterio = {
             nivel: nivel,
             lang: idioma
@@ -540,7 +541,7 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
         )
     })
 
-    app.get("/actualizarIdiomas", function (req, res) {
+    app.get("/admin/actualizarIdiomas", function (req, res) {
         var textoPrueba = "Anoche amoché en un canchal y me quedé moñeco.";
         isoCodes.obtenerParCodigoLangIso(function (result) {
             if(result == null){
@@ -597,6 +598,15 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
                 })
             }
         });
+    })
+
+    app.get("/admin/igualarTextos", function (req, res) {
+        /*
+        Se parte siempre del español, es decir, se traducen los textos en español a otros idiomas y despues se insertan.
+         */
+        var criterio = {
+            lang : "es"
+        }
     })
 
 

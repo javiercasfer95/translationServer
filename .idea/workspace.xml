@@ -2,11 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e7d51713-f73b-4639-8e4d-70e2449d5a52" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/gestorDB.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/gestorDB.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/gestorServer.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/gestorServer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/traductorLimitless.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/traductorLimitless.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/rapiservertraductions.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/rapiservertraductions.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -30,20 +25,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gestorServer.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="gestorServer.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/gestorServer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="67" column="55" selection-start-line="67" selection-start-column="55" selection-end-line="67" selection-end-column="55" />
+            <state relative-caret-position="201">
+              <caret line="71" column="13" lean-forward="true" selection-start-line="71" selection-start-column="13" selection-end-line="71" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="rapiservertraductions.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="rapiservertraductions.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/rapiservertraductions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-55">
-              <caret line="576" column="38" selection-start-line="576" selection-start-column="38" selection-end-line="576" selection-end-column="38" />
+            <state relative-caret-position="170">
+              <caret line="597" column="18" lean-forward="true" selection-start-line="597" selection-start-column="18" selection-end-line="597" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -60,7 +55,7 @@
       <file leaf-file-name="gestorDB.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/gestorDB.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
+            <state relative-caret-position="-140">
               <caret line="68" column="30" selection-start-line="68" selection-start-column="30" selection-end-line="68" selection-end-column="30" />
             </state>
           </provider>
@@ -127,9 +122,9 @@
         <option value="$PROJECT_DIR$/modules/isoLangCodes.js" />
         <option value="$PROJECT_DIR$/modules/traductorLimitless.js" />
         <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/routes/rapiservertraductions.js" />
         <option value="$PROJECT_DIR$/modules/gestorDB.js" />
         <option value="$PROJECT_DIR$/modules/gestorServer.js" />
+        <option value="$PROJECT_DIR$/routes/rapiservertraductions.js" />
       </list>
     </option>
   </component>
@@ -224,12 +219,12 @@
       <workItem from="1535610451326" duration="7288000" />
       <workItem from="1535697076749" duration="14549000" />
       <workItem from="1536054690180" duration="7786000" />
-      <workItem from="1536129069414" duration="562000" />
+      <workItem from="1536129069414" duration="1778000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58122000" />
+    <option name="totallyTimeSpent" value="59338000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -242,13 +237,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49834985" visible="true" weight="0.35193452" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32838285" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50074404" side_tool="true" weight="0.43234324" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32838285" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49925596" visible="true" weight="0.43234324" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49925596" weight="0.43234324" />
       <window_info id="npm" order="2" sideWeight="0.50165015" side_tool="true" weight="0.24925596" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.22112212" />
@@ -614,24 +610,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/rapiservertraductions.js">
+    <entry file="file://$PROJECT_DIR$/modules/gestorServer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-55">
-          <caret line="576" column="38" selection-start-line="576" selection-start-column="38" selection-end-line="576" selection-end-column="38" />
+        <state relative-caret-position="201">
+          <caret line="71" column="13" lean-forward="true" selection-start-line="71" selection-start-column="13" selection-end-line="71" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/gestorDB.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
+        <state relative-caret-position="-140">
           <caret line="68" column="30" selection-start-line="68" selection-start-column="30" selection-end-line="68" selection-end-column="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/gestorServer.js">
+    <entry file="file://$PROJECT_DIR$/routes/rapiservertraductions.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="67" column="55" selection-start-line="67" selection-start-column="55" selection-end-line="67" selection-end-column="55" />
+        <state relative-caret-position="170">
+          <caret line="597" column="18" lean-forward="true" selection-start-line="597" selection-start-column="18" selection-end-line="597" selection-end-column="18" />
         </state>
       </provider>
     </entry>
