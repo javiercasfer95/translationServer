@@ -12,7 +12,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // https://www.npmjs.com/package/limitless-google-translate
 
 var gestorDB = require("./modules/gestorDB.js");
-var googleTranslate = require('google-translate')(apiKey); //Conseguir la apiKey
+//var googleTranslate = require('google-translate')(apiKey); //Conseguir la apiKey
+var googleTranslate = null;
 var limitless = require('limitless-google-translate');
 var gestorServer = require("./modules/gestorServer.js");
 var isoCodes = require('iso-639-1');
@@ -39,7 +40,7 @@ app.get("/", function (req, res) {
 });
 // lanzar el servidor
 app.listen(app.get('port'), function() {
-    console.log("Servidor activo");
+    console.log("Servidor activo on port: " + app.get('port'));
 });
 
 

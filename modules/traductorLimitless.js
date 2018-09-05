@@ -59,6 +59,7 @@ module.exports = {
             }
         ).catch((err) => {
             console.log(new Error(err))
+            console.log(err)
             funcionCallBack(null);
         })
     }, getSupportedLanguagesCodes : function (funcionCallback) {
@@ -92,11 +93,13 @@ module.exports = {
                }else{
                    //for(var i = 0; i < listaTraducida.length; i++){}
                    console.log(listaTraducida);
+                   nuevaLista = listaTraducida;
                    iteradorCodigos = iteradorCodigos + 1;
                    iteradorTextos = 0;
-                   this.traducirPorTodosLosCodigosIterativa(listaTextos,
-                       iteradorTextos, listaCodigos,
-                       iteradorCodigos, langFrom, nuevaLista, funcionCallback);
+                   traducirPorTodosLosCodigosIterativa(listaTextos,
+                       iteradorTextos,
+                       listaCodigos, iteradorCodigos,
+                       langFrom, nuevaLista, funcionCallback);
                }
            });
         }else{

@@ -607,6 +607,7 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
         /*
         Se parte siempre del español, es decir, se traducen los textos en español a otros idiomas y despues se insertan.
          */
+        console.log("Vamos a igualar los textos")
         var langFrom = "es";
         var criterio = {
             lang: langFrom
