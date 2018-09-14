@@ -81,9 +81,16 @@ module.exports = {
 
     }, traducirPorTodosLosCodigosIterativa : function (instance, listaTextos, iteradorTextos, listaCodigos, iteradorCodigos, langFrom, nuevaLista, funcionCallback) {
         //var actualLang = listaTextos[iteradorTextos];
+        //var e = typeof funcionCallback == "function" ? true : false;
+        //console.log(e);
+        var letra;
+        letra = "A";
+        console.log(letra);
         if(iteradorCodigos < listaCodigos.length){
             var actualCode = listaCodigos[iteradorCodigos];
             console.log(actualCode)
+            letra = "B";
+            console.log(letra);
             //actualCode = 'en';
            var langs = {
                from : langFrom,
@@ -92,6 +99,8 @@ module.exports = {
            console.log("Iteracion por codigo: ");
            console.log(langs);
            this.ntraduccionIterativa(listaTextos, nuevaLista, langs, iteradorTextos, funcionCallback, function (listaTraducida) {
+               letra = "C";
+               console.log(letra);
                if(listaTraducida == null){
                    console.log("Ha ocurrido un error.")
                    funcionCallback(null);
@@ -106,10 +115,14 @@ module.exports = {
                    //nuevaLista = listaTraducida;
                    iteradorCodigos = iteradorCodigos + 1;
                    iteradorTextos = 0;
+                   letra = "D";
+                   console.log(letra);
                    instance.traducirPorTodosLosCodigosIterativa(listaTextos, iteradorTextos, listaCodigos, iteradorCodigos, langFrom, nuevaLista, funcionCallback);
                }
            });
         }else{
+            letra = "E";
+            console.log(letra);
             funcionCallback(nuevaLista);
         }
     }, ntraduccionIterativa : function (listaTextos, listaNuevosTextos, langs, iterador, funcionVuelta, funcionCallBack) {

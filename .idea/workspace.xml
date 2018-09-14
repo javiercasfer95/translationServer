@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="e7d51713-f73b-4639-8e4d-70e2449d5a52" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/gestorDB.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/gestorDB.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/gestorServer.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/gestorServer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modules/traductorLimitless.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/traductorLimitless.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/rapiservertraductions.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/rapiservertraductions.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -29,26 +32,26 @@
       <file leaf-file-name="gestorServer.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/gestorServer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-911">
-              <caret line="10" column="21" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="21" />
+            <state relative-caret-position="184">
+              <caret line="115" column="9" lean-forward="true" selection-start-line="115" selection-start-column="9" selection-end-line="115" selection-end-column="9" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="rapiservertraductions.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="rapiservertraductions.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/rapiservertraductions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-109">
-              <caret line="614" column="30" selection-start-line="614" selection-start-column="17" selection-end-line="614" selection-end-column="30" />
+            <state relative-caret-position="51">
+              <caret line="3" column="14" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="traductorLimitless.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="traductorLimitless.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/traductorLimitless.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="78">
-              <caret line="99" column="65" selection-start-line="99" selection-start-column="65" selection-end-line="99" selection-end-column="65" />
+            <state relative-caret-position="17">
+              <caret line="42" column="26" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -56,8 +59,8 @@
       <file leaf-file-name="gestorDB.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/gestorDB.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3196">
-              <caret line="188" column="47" selection-start-line="188" selection-start-column="47" selection-end-line="188" selection-end-column="47" />
+            <state relative-caret-position="109">
+              <caret line="219" column="26" selection-start-line="219" selection-start-column="7" selection-end-line="219" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -104,11 +107,11 @@
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/modules/traductor.js" />
         <option value="$PROJECT_DIR$/modules/isoLangCodes.js" />
+        <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/modules/traductorLimitless.js" />
         <option value="$PROJECT_DIR$/modules/gestorServer.js" />
         <option value="$PROJECT_DIR$/modules/gestorDB.js" />
         <option value="$PROJECT_DIR$/routes/rapiservertraductions.js" />
-        <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/modules/traductorLimitless.js" />
       </list>
     </option>
   </component>
@@ -215,12 +218,15 @@
       <workItem from="1536054690180" duration="7786000" />
       <workItem from="1536129069414" duration="8887000" />
       <workItem from="1536146942011" duration="1368000" />
-      <workItem from="1536221089677" duration="2816000" />
+      <workItem from="1536221089677" duration="3023000" />
+      <workItem from="1536233875280" duration="1944000" />
+      <workItem from="1536311691007" duration="4941000" />
+      <workItem from="1536912956460" duration="3633000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70631000" />
+    <option name="totallyTimeSpent" value="81356000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -235,7 +241,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49834985" visible="true" weight="0.19791667" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49834985" visible="true" weight="0.13988096" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32838285" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50074404" side_tool="true" weight="0.43234324" />
@@ -264,14 +270,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/modules/traductorLimitless.js</url>
-          <line>55</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="6" />
     </breakpoint-manager>
     <watches-manager>
@@ -558,24 +556,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/mongodb/lib/utils.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2074">
-          <caret line="122" selection-start-line="122" selection-end-line="122" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/limitless-google-translate/engine.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="62" column="10" selection-start-line="62" selection-start-column="10" selection-end-line="62" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/gestorDB.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3196">
-          <caret line="188" column="47" selection-start-line="188" selection-start-column="47" selection-end-line="188" selection-end-column="47" />
         </state>
       </provider>
     </entry>
@@ -593,13 +577,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="12" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/google-translate-api/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="183">
@@ -609,29 +586,50 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/q/q.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="863" column="23" selection-start-line="863" selection-start-column="23" selection-end-line="863" selection-end-column="23" />
+        <state relative-caret-position="2108">
+          <caret line="124" column="12" selection-start-line="124" selection-start-column="12" selection-end-line="124" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/gestorServer.js">
+    <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-911">
-          <caret line="10" column="21" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="21" />
+        <state relative-caret-position="255">
+          <caret line="15" column="12" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/rapiservertraductions.js">
+    <entry file="file://$PROJECT_DIR$/node_modules/mongodb/lib/utils.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-109">
-          <caret line="614" column="30" selection-start-line="614" selection-start-column="17" selection-end-line="614" selection-end-column="30" />
+        <state relative-caret-position="2074">
+          <caret line="122" selection-start-line="122" selection-end-line="122" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/traductorLimitless.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="99" column="65" selection-start-line="99" selection-start-column="65" selection-end-line="99" selection-end-column="65" />
+        <state relative-caret-position="17">
+          <caret line="42" column="26" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/gestorDB.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="109">
+          <caret line="219" column="26" selection-start-line="219" selection-start-column="7" selection-end-line="219" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/gestorServer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="115" column="9" lean-forward="true" selection-start-line="115" selection-start-column="9" selection-end-line="115" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/rapiservertraductions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="14" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
         </state>
       </provider>
     </entry>

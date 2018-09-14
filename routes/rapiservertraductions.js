@@ -658,6 +658,78 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
         })
     })
 
+    app.get("/admin/updateLangsWithTexts", function (req, res) {
+        var criterio = {}
+       gestorBD.obtenerTextos(criterio, function (result) {
+           if(result == null){
+               res.status(501);
+               res.json({
+                   msj : "No se ha podido obtener los idiomas."
+               })
+           }else{
+               //console.log(result);
+               //var listaTextos = result["textos"];
+               gestorServer.actualizarIdiomasConTextos(result, function (listado) {
+                   if(listado == null){
+                       res.status(501);
+                       res.json({
+                           msj : "No se ha podido obtener los idiomas con textos."
+                       });
+                   }else{
+                       console.log(listado);
+                       console.log("Vamos bien");
+                       criterio ={
+                           codigo : { $in : listado }
+                       }
+                       //criterio = { codigo : "es" }
+                       gestorBD.obtenerMisLangs(criterio, function (misLangsObjs) {
+                           if(misLangsObjs == null){
+                               console.log("No funciona el filtro")
+                               res.status(501);
+                               res.json({
+                                   msj : "No se pueden obtener los codigos de idiomas. Error de servidor."
+                               })
+                           }else{
+                               console.log("Ha funcionado")
+                               console.log(misLangsObjs)
+                               gestorBD.updateTextWithLangs(misLangsObjs, function (resultadoInsercion) {
+                                   if(resultadoInsercion == null){
+                                       res.status(501);
+                                       res.json({
+                                           msj : "No se ha podido actualizar la base de idiomas"
+                                       })
+                                   }else{
+                                       res.status(200);
+                                       res.json({
+                                           msj : "La operación se ha realizado correctamente. Congrats!!"
+                                       })
+                                   }
+                               })
+                           }
+                       })
+                   }
+               })
+           }
+       })
+
+        /*
+        gestorServer.actualizarIdiomasConTextos(function (listaLangs) {
+            if(listaLangs == null){
+                res.status(501);
+                res.json({
+                    msj : "No se ha podido obtener los idiomas con textos."
+                })
+            }else{
+                res.status(200);
+                res.json({
+                    msj : "Si he conseguido los idiomas con textos",
+                    contenido : listaLangs
+                });
+            }
+        });
+        */
+    });
+
 
     /*
 
