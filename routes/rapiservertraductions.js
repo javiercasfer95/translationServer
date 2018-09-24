@@ -631,24 +631,24 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
                         //console.log(misLangCodes);
                         var misLangs = [];
                         var lang;
-                        for(var i = 0; i < misLangCodes.length; i++){
+                        for (var i = 0; i < misLangCodes.length; i++) {
                             lang = misLangCodes[i];
                             misLangs.push(lang["codigo"]);
                         }
                         //console.log(misLangs)
                         limitless.traducirPorTodosLosCodigos(misTextos, misLangs, langFrom, function (listaTraducida) {
-                            if(listaTraducida == null){
+                            if (listaTraducida == null) {
                                 res.status(501);
                                 res.json({
                                     msj: "Error al traducir la lista"
                                 })
-                            }else{
+                            } else {
                                 console.log("Tamaño de la lista: ", listaTraducida.length);
                                 console.log(listaTraducida);
                                 res.status(200);
                                 res.json({
-                                    resultado : listaTraducida,
-                                    msj : "Si que se han traducido los textos"
+                                    resultado: listaTraducida,
+                                    msj: "Si que se han traducido los textos"
                                 })
                             }
                         })
@@ -660,93 +660,119 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
 
     app.get("/admin/updateLangsWithTexts", function (req, res) {
         var criterio = {}
-       gestorBD.obtenerTextos(criterio, function (result) {
-           if(result == null){
-               res.status(501);
-               res.json({
-                   msj : "No se ha podido obtener los idiomas."
-               })
-           }else{
-               //console.log(result);
-               //var listaTextos = result["textos"];
-               gestorServer.actualizarIdiomasConTextos(result, function (listado) {
-                   if(listado == null){
-                       res.status(501);
-                       res.json({
-                           msj : "No se ha podido obtener los idiomas con textos."
-                       });
-                   }else{
-                       console.log(listado);
-                       console.log("Vamos bien");
-                       criterio ={
-                           codigo : { $in : listado }
-                       }
-                       //criterio = { codigo : "es" }
-                       gestorBD.obtenerMisLangs(criterio, function (misLangsObjs) {
-                           if(misLangsObjs == null){
-                               console.log("No funciona el filtro")
-                               res.status(501);
-                               res.json({
-                                   msj : "No se pueden obtener los codigos de idiomas. Error de servidor."
-                               })
-                           }else{
-                               console.log("Ha funcionado")
-                               console.log(misLangsObjs)
-                               gestorBD.updateTextWithLangs(misLangsObjs, function (resultadoInsercion) {
-                                   if(resultadoInsercion == null){
-                                       res.status(501);
-                                       res.json({
-                                           msj : "No se ha podido actualizar la base de idiomas"
-                                       })
-                                   }else{
-                                       res.status(200);
-                                       res.json({
-                                           msj : "La operación se ha realizado correctamente. Congrats!!"
-                                       })
-                                   }
-                               })
-                           }
-                       })
-                   }
-               })
-           }
-       })
-
-        /*
-        gestorServer.actualizarIdiomasConTextos(function (listaLangs) {
-            if(listaLangs == null){
+        gestorBD.obtenerTextos(criterio, function (result) {
+            if (result == null) {
                 res.status(501);
                 res.json({
-                    msj : "No se ha podido obtener los idiomas con textos."
+                    msj: "No se ha podido obtener los idiomas."
                 })
-            }else{
+            } else {
+                //console.log(result);
+                //var listaTextos = result["textos"];
+                gestorServer.actualizarIdiomasConTextos(result, function (listado) {
+                    if (listado == null) {
+                        res.status(501);
+                        res.json({
+                            msj: "No se ha podido obtener los idiomas con textos."
+                        });
+                    } else {
+                        console.log(listado);
+                        console.log("Vamos bien");
+                        criterio = {
+                            codigo: {$in: listado}
+                        }
+                        //criterio = { codigo : "es" }
+                        gestorBD.obtenerMisLangs(criterio, function (misLangsObjs) {
+                            if (misLangsObjs == null) {
+                                console.log("No funciona el filtro")
+                                res.status(501);
+                                res.json({
+                                    msj: "No se pueden obtener los codigos de idiomas. Error de servidor."
+                                })
+                            } else {
+                                console.log("Ha funcionado")
+                                console.log(misLangsObjs)
+                                gestorBD.updateTextWithLangs(misLangsObjs, function (resultadoInsercion) {
+                                    if (resultadoInsercion == null) {
+                                        res.status(501);
+                                        res.json({
+                                            msj: "No se ha podido actualizar la base de idiomas"
+                                        })
+                                    } else {
+                                        res.status(200);
+                                        res.json({
+                                            msj: "La operación se ha realizado correctamente. Congrats!!"
+                                        })
+                                    }
+                                })
+                            }
+                        })
+                    }
+                })
+            }
+        });
+    });
+
+    app.get("/getLangsWithTexts", function (req, res) {
+        var criterio = {}
+        gestorBD.getLangsWithTexts(criterio, function (resultado) {
+            console.log(resultado);
+            if (resultado == null) {
+                res.status(501);
+                res.json({
+                    msj: "No se han podido obtener los codigos de idioma con textos. Error de servidor."
+                })
+
+            } else if (resultado.length == 0) {
+                res.status(501);
+                res.json({
+                    msj: "No existen idiomas con texto en la aplicacion"
+                })
+            } else {
                 res.status(200);
                 res.json({
-                    msj : "Si he conseguido los idiomas con textos",
-                    contenido : listaLangs
+                    idiomas: resultado
                 });
             }
         });
-        */
     });
 
-
-    /*
-
-    if (false) {
-                            gestorBD.eliminarTodosTextos(function (resultado) {
-                                if (resultado == null) {
-                                    res.status(501);
-                                    res.json({
-                                        msj: "Error al reiniciar la base de datos de textos"
-                                    })
-                                } else {
-
-                                }
-                            })
-                        }
-
-     */
-
-    //----------------- FIN Traduccion de textos -----------------
 }
+
+
+/*
+gestorServer.actualizarIdiomasConTextos(function (listaLangs) {
+    if(listaLangs == null){
+        res.status(501);
+        res.json({
+            msj : "No se ha podido obtener los idiomas con textos."
+        })
+    }else{
+        res.status(200);
+        res.json({
+            msj : "Si he conseguido los idiomas con textos",
+            contenido : listaLangs
+        });
+    }
+});
+*/
+
+
+/*
+
+if (false) {
+                        gestorBD.eliminarTodosTextos(function (resultado) {
+                            if (resultado == null) {
+                                res.status(501);
+                                res.json({
+                                    msj: "Error al reiniciar la base de datos de textos"
+                                })
+                            } else {
+
+                            }
+                        })
+                    }
+
+ */
+
+//----------------- FIN Traduccion de textos -----------------

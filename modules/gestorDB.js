@@ -241,5 +241,22 @@ module.exports = {
                 })
             }
         });
+    }, getLangsWithTexts : function (criterio, funcionCallback){
+        this.mongo.MongoClient.connect(this.app.get('db'), function (err, db) {
+            if(err){
+                funcionCallback(null);
+            }else{
+                var collection = db.collection('langsWithTexts');
+                collection.find(criterio).toArray(function (err, ok) {
+                    if(err){
+                        console.log("No se han podido obtener mis idiomas")
+                        funcionCallback(null);
+                    }else{
+                        console.log("LangCodes con texto obtenidos correctamente");
+                        funcionCallback(ok);
+                    }
+                })
+            }
+        });
     }
 }
