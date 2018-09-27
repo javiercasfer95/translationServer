@@ -10,14 +10,26 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
         });
     });
     app.get("/texto", function (req, res) {
-        var lv = parseInt(req.query.lv);
-        var lang = req.query.lang;
-        var nLang = lang.toLowerCase();
-        lang = nLang;
         var criterio = {
-            "nivel": lv,
-            "lang": lang
+
         }
+
+        var lvParam = req.query.lv;
+        var lv = null;
+        if(lvParam != null)
+            lv = parseInt(lvParam);
+
+        var lang = req.query.lang;
+        var nLang= null;
+        if(lang != null)
+            nLang = lang.toLowerCase();
+
+        lang = nLang;
+        if(lv != null)
+            criterio['nivel'] = lv;
+        if(lang != null)
+            criterio['lang'] = lang;
+
         //criterio = {}
         console.log(criterio);
         gestorBD.obtenerTextos(criterio, function (textos) {
