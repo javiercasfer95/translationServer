@@ -216,6 +216,8 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
                     pass: result[0]["pass"],
                     estadisticas: result[0]["estadisticas"]
                 }
+                console.log("Mi usuario:")
+                console.log(mauser);
                 //res.send(JSON.stringify(mauser));
                 res.send(mauser);
             }
