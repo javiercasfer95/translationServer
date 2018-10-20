@@ -296,6 +296,8 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
             pass: pass,
             estadisticas: estadisticas
         }
+        console.log("Llega el usuario con estos datos");
+        console.log(user);
         gestorBD.obtenerDatosUsuario(criterio, function (result) {
             if (result == null) {
                 res.status(401);
