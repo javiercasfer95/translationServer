@@ -38,7 +38,7 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
                 //res.send(JSON.stringify(txts)); //Le mando un array vacio de datos, lo cual quiere decir que no se han encontrado textos de ese nivel.
                 res.status(401);
                 res.json({
-                    error: "Error al obtener los textos del idioma " + lang + " del nivel " + lv
+                    msj: "Error al obtener los textos del idioma " + lang + " del nivel " + lv
                 });
             } else if (textos.length == 0) {
                 res.status(200);
@@ -81,7 +81,7 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
             if (textos == null) {
                 res.status(401);
                 res.json({
-                    error: "No se han encotnrado textos de ese nivel."
+                    msj: "No se han encotnrado textos de ese nivel."
                 });
             } else {
                 var id1 = 0, id2 = 0;
@@ -109,7 +109,7 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
                         if (result == null) {
                             res.status(401);
                             res.json({
-                                error: "Error al insertar el texto"
+                                msj: "Error al insertar el texto"
                             })
                         } else {
                             res.status(200);
@@ -121,7 +121,7 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
                 } else {
                     res.status(401);
                     res.json({
-                        error: "El mensaje ya existe"
+                        msj: "El mensaje ya existe"
                     })
                 }
 
@@ -200,7 +200,7 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
             if (result == null) {
                 res.status(401);
                 res.json({
-                    error: "Error al buscar usuarios."
+                    msj: "Error al buscar usuarios."
                 });
             } else if (result.length == 0) {
                 res.status(401);
@@ -230,6 +230,7 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
         var email = req.body.email;
         var pass = req.body.pass;
 
+
         var estadisticas = []
         if (email == null || pass == null) {
             res.status(401);
@@ -250,7 +251,7 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
                 if (result == null) {
                     res.status(401);
                     res.json({
-                        error: "Ha ocurrido un error al verificar si existe un usuario con el email: " + email
+                        msj: "Ha ocurrido un error al verificar si existe un usuario con el email: " + email
                     })
                 } else if (result.length != 0) {
                     res.status(401);
@@ -263,7 +264,7 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
                         if (result == null) {
                             res.status(401);
                             res.json({
-                                error: "No se ha podido insertar el usuario en la base de datos."
+                                msj: "No se ha podido insertar el usuario en la base de datos."
                             })
                         } else {
                             res.status(200);
@@ -276,7 +277,7 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
                 } else {
                     res.status(401);
                     res.json({
-                        error: "Ya existe un usuario con el email: " + email
+                        msj: "Ya existe un usuario con el email: " + email
                     })
                 }
             });
@@ -289,7 +290,9 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
         var email = req.body.email;
         var pass = req.body.pass;
         var estadisticas = req.body.estadisticas;
-        var criterio = {
+        var criterio = {};
+
+        criterio = {
             email: email,
             pass: pass
         }
@@ -304,19 +307,19 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
             if (result == null) {
                 res.status(401);
                 res.json({
-                    error: "Error al verificar que el usuario es el correcto"
+                    msj: "Error al verificar que el usuario es el correcto"
                 })
             } else if (result.length == 0) {
                 res.status(401);
                 res.json({
-                    error: "No se ha encontrado el usuario."
+                    msj: "No se ha encontrado el usuario."
                 })
             } else {
                 gestorBD.actualizarUsuario(criterio, user, function (result) {
                     if (result == null) {
                         res.status(401)
                         res.json({
-                            error: "Error al momento de actualizar los datos del usuario"
+                            msj: "Error al momento de actualizar los datos del usuario"
                         })
                     } else {
                         res.status(200);
@@ -403,7 +406,7 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
                 //res.send(JSON.stringify(txts)); //Le mando un array vacio de datos, lo cual quiere decir que no se han encontrado textos de ese nivel.
                 res.status(401);
                 res.json({
-                    error: "Error al obtener los textos del idioma " + lang + " del nivel " + lv
+                    msj: "Error al obtener los textos del idioma " + lang + " del nivel " + lv
                 });
             } else if (textos.length == 0) {
                 res.status(401);
