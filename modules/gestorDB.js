@@ -169,8 +169,23 @@ module.exports = {
                 });
             }
         });
-    },
-    actualizarUsuario: function (criterio, usuario, funcionCallback) {
+    },borrarUsuario: function (usuario, funcionCallback) {
+        this.mongo.MongoClient.connect(this.app.get('db'), function (err, db) {
+            if (err) {
+                funcionCallback(null);
+            } else {
+                var collection = db.collection('usuarios');
+                collection.remove(usuario, function (err, obj) {
+                    if (err) {
+                        funcionCallback(null);
+                    } else {
+                        funcionCallback(obj);
+                    }
+                    db.close();
+                })
+            }
+        })
+    }, actualizarUsuario: function (criterio, usuario, funcionCallback) {
         this.mongo.MongoClient.connect(this.app.get('db'), function (err, db) {
             if (err) {
                 funcionCallback(null);
