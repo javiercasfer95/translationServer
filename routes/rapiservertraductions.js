@@ -229,9 +229,12 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
 
         var email = req.body.email;
         var pass = req.body.pass;
+        var stats = req.body.estadisticas;
+        var estadisticas = [];
 
+        if(stats != null)
+            estadisticas = stats;
 
-        var estadisticas = []
         if (email == null || pass == null) {
             res.status(401);
             res.json({
@@ -599,6 +602,11 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
             }
         )
     })
+
+    //FIN TRADUCCIONES
+
+
+    //TEMAS DE IDIOMAS
 
     app.get("/admin/actualizarIdiomas", function (req, res) {
         var textoPrueba = "Anoche amoché en un canchal y me quedé moñeco.";
