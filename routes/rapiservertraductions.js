@@ -391,7 +391,7 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
             })
 
         }
-        gestorBD.borrarUsuario(criterio, function (result) {
+        gestorBD.obtenerDatosUsuario(criterio, function (result) {
             if (result == null) {
                 res.status(401);
                 res.json({
@@ -400,16 +400,32 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
             } else if (result.length == 0) {
                 res.status(401);
                 res.json({
-                    msj: "No se ha encontrado un usuario para borrar."
+                    msj: "No se han encontrado usuarios."
                 });
             } else {
-                res.status(200);
-                res.json({
-                    msj: "Se ha borrado con éxito el usuario.",
-                    usuario: result
-                })
+                gestorBD.borrarUsuario(criterio, function (result) {
+                    if (result == null) {
+                        res.status(401);
+                        res.json({
+                            msj: "Error al buscar."
+                        });
+                    } else if (result.length == 0) {
+                        res.status(401);
+                        res.json({
+                            msj: "No se ha encontrado un usuario para borrar."
+                        });
+                    } else {
+                        res.status(200);
+                        res.json({
+                            msj: "Se ha borrado con éxito el usuario.",
+                            usuario: result
+                        })
+                    }
+                });
             }
         });
+
+
     });
     app.get("/usuarios", function (req, res) {
         var criterio = {}
@@ -804,39 +820,5 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
 }
 
 
-/*
-gestorServer.actualizarIdiomasConTextos(function (listaLangs) {
-    if(listaLangs == null){
-        res.status(501);
-        res.json({
-            msj : "No se ha podido obtener los idiomas con textos."
-        })
-    }else{
-        res.status(200);
-        res.json({
-            msj : "Si he conseguido los idiomas con textos",
-            contenido : listaLangs
-        });
-    }
-});
-*/
-
-
-/*
-
-if (false) {
-                        gestorBD.eliminarTodosTextos(function (resultado) {
-                            if (resultado == null) {
-                                res.status(501);
-                                res.json({
-                                    msj: "Error al reiniciar la base de datos de textos"
-                                })
-                            } else {
-
-                            }
-                        })
-                    }
-
- */
 
 //----------------- FIN Traduccion de textos -----------------
