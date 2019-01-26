@@ -1,4 +1,6 @@
 # translationServer
 Servidor de traducciones del TFG
 
-Se trata de un servidor que maneja la base de datos del proyecto. Además, realiza las traducciones pertinentes mediante la API de la gran G. 
+Servidor que realiza la gestión de textos, idiomas y usuarios para el sistema PronunApp.
+
+Como extra permite hacer traducciones de texto.

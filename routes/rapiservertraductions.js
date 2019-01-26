@@ -587,19 +587,7 @@ module.exports = function (app, gestorBD, gestorServer, traductor, limitless, is
 
     app.post("/idiomasIso", function (req, res) {
         isoCodes.obtenerParCodigoLangIso(function (result) {
-                /*
-                Tengo un objeto json del tipo
-                {
-                    "codigos" : [
-                    { "codigo" : "a",
-                        "idioma" : "aIdioma"
-                        },
-                        { "codigo" : "b",
-                        "idioma" : "bIdioma"
-                        }
-                    ]
-                }
-                 */
+
                 console.log(result);
                 var codigos = result;
                 gestorBD.insertLangCodes(codigos, function (respuesta) {

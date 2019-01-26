@@ -31,9 +31,6 @@ limitlessTraductor.init(app, limitless);
 isoLangCodes.init(app, isoCodes);
 
 //Require
-require("./routes/rtexts.js")(app, gestorDB); // app para que la utilice el route.
-require("./routes/rtest.js")(app, gestorDB, traductor, gestorServer);
-require("./routes/rusuarios.js")(app, gestorDB);
 require("./routes/rapiservertraductions.js")(app, gestorDB, gestorServer, traductor, limitlessTraductor, isoLangCodes);
 app.get("/", function (req, res) {
     res.send("Servidor en funcionamiento.");

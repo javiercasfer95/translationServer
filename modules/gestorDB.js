@@ -94,31 +94,6 @@ module.exports = {
 
             }
         });
-    },  insertLangCodesWithTexts : function (codes, funcionCallback) {
-        this.mongo.MongoClient.connect(this.app.get('db'), function (err, db) {
-            if (err) {
-                funcionCallback(null);
-            } else {
-                var collection = db.collection('langCodesWithtexts');
-                collection.remove({},function (err, ok) {
-                    if(err){
-                        console.log("No ha hecho el drop de langCodes")
-                        funcionCallback(null);
-                    }else{
-                        collection.insertMany(codes, function (err, result) {
-                            //console.log("He llegado al insertManyCodes");
-                            if (err) {
-                                funcionCallback(null);
-                            } else {
-                                funcionCallback(result);
-                            }
-                            db.close();
-                        });
-                    }
-                })
-
-            }
-        });
     },
     obtenerTextos: function (criterio, funcionCallback) {
         this.mongo.MongoClient.connect(this.app.get('db'), function (err, db) {
